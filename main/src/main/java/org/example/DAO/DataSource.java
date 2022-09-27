@@ -1,6 +1,9 @@
 package org.example.DAO;
 
-public class DataSource {
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class DataSource implements DataSourceInterface {
 	private static DataSource instance;
 	private DataSource() {
 		if (instance != null) {
@@ -18,6 +21,19 @@ public class DataSource {
 				instance = new DataSource();
 			}
 			return instance;
+		}
+	}
+
+	@Override
+	public void writeData(String orderName) {
+		try {
+			FileWriter myWriter = new FileWriter("orders.txt");
+			myWriter.write("Order created: " + orderName + "\n");
+			myWriter.close();
+			System.out.println("Successfully wrote to the file.");
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
 		}
 	}
 
