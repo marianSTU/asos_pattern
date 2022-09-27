@@ -1,10 +1,14 @@
 package org.example.abstractFactory;
 
-public class BeefBurgerFactory implements BurgerFactory {
+public class BeefBurgerFactory implements BurgerAbstractFactory {
 
     @Override
-    public BeefBurger createBurger() {
-        //TODO Beef burger implementation
-        return null;
+    public ClassicBurger createClassicBurger() {
+        return new ClassicBeefBurger();
+    }
+
+    @Override
+    public DoubleBurger createDoubleBurger() {
+        return new DoubleBeefBurger();
     }
 }

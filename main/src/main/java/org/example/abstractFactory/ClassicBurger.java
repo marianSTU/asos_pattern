@@ -1,6 +1,6 @@
 package org.example.abstractFactory;
 
-public interface Burger {
+public interface ClassicBurger {
     public void hasMeat();
-    public void canBeEaten();
+    public String writeInfo();
 }
