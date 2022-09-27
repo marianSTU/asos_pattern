@@ -9,6 +9,11 @@ public class DataSource implements DataSourceInterface {
 		if (instance != null) {
 			throw new RuntimeException();
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	public static DataSource getInstance() {
