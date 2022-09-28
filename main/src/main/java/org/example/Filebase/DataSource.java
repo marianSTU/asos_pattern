@@ -1,9 +1,11 @@
-package org.example.DAO;
+package org.example.Filebase;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class DataSource implements DataSourceInterface {
+public class DataSource implements DataSourceInterface, Serializable, Cloneable {
 	private static DataSource instance;
 	private DataSource() {
 		if (instance != null) {
@@ -32,7 +34,8 @@ public class DataSource implements DataSourceInterface {
 	@Override
 	public void writeData(String orderName) {
 		try {
-			FileWriter myWriter = new FileWriter("orders.txt");
+			BufferedWriter myWriter = new BufferedWriter(
+					new FileWriter("orders.txt", true));
 			myWriter.write("Order created: " + orderName + "\n");
 			myWriter.close();
 			System.out.println("Successfully wrote to the file.");
