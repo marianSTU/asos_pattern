@@ -3,11 +3,12 @@ package org.example.abstractFactory;
 public class DoubleBeefBurger implements DoubleBurger {
     @Override
     public void hasMeat() {
-        System.out.println("Burger ma hovadzie maso.");
+        System.out.println("Burger has beef meat.");
     }
 
     @Override
     public String writeInfo() {
-        return "\nDvojitý burger s hovädzím mäsom.";
+        return "\nDouble beef burger.";
     }
 }
+
