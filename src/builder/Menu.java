@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static void showMenu(){
+    public static String showMenu(){
         int choice;
         Pizza pizza;
         Director director = new Director();
@@ -15,7 +15,7 @@ public class Menu {
         printMainMenu();
         choice = input.nextInt();
 
-        while (choice != 5){
+        while (choice != 6){
             switch (choice){
                 case 1:
                     boolean size = selectOption("Select Big Size","Select Small Size");
@@ -38,14 +38,19 @@ public class Menu {
                     pizza = pizzaBuilder.build();
                     System.out.println(pizza.toString());
                     break;
-                default:
-                    printMainMenu();
+                case 5:
+                    pizza = pizzaBuilder.build();
+                    if(checkOrder(pizza)){
+                        return pizza.toString();
+                    }
+                    System.out.println("You haven't ordered yet...\n");
                     break;
             }
 
             printMainMenu();
             choice = input.nextInt();
         }
+        return "";
     }
 
     private static void selectedIngredients(Pizza.Builder builder,int choice){
@@ -136,6 +141,13 @@ public class Menu {
         }
     }
 
+    private static Boolean checkOrder(Pizza pizza) {
+        if (pizza.getSize() != null && (pizza.isBacon() || pizza.isCheese() || pizza.isCorn() || pizza.isHam() || pizza.isOnion() || pizza.isPepperoni() || pizza.isPineapple() || pizza.isTomatoSauce() || pizza.isTuna() || pizza.isChickenMeat() || pizza.isSalami())) {
+            return true;
+        }
+        return false;
+    }
+
     private static Boolean selectOption(String select1, String select2){
         Scanner input = new Scanner(System.in);
         System.out.println("""
@@ -184,7 +196,8 @@ public class Menu {
                 ╠-● 2. Select Pizza from Menu
                 ╠-● 3. Edit Ingredients
                 ╠-● 4. Show Pizza
-                ╠-● 5. EXIT
+                ╠-● 5. Make an Order
+                ╠-● 6. EXIT
                 ╚═════════════════════════════╝\s
                 """);
     }
