@@ -1,40 +1,71 @@
 package org.example.abstractFactory;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BurgerFactory {
 
     public static String getBurger() {
-        Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
+        Scanner input = new Scanner(System.in);  // Create a Scanner object
         int choice;
-        BurgerAbstractFactory factory;
+        BurgerAbstractFactory factory = null;
 
 
-        System.out.println("Vybral si si Burger!\n");
-        System.out.println("Aké chceš mäso?");
-        System.out.println("1: Hovädzie");
-        System.out.println("2: Kuracie");
-
-        choice = myScanner.nextInt();
-
-        if(choice == 1) {
-            factory = new BeefBurgerFactory();
-        } else {
-            factory = new ChickenBurgerFactory();
-        }
+        System.out.println("You chose Burger!\n");
 
 
-        System.out.println("\nAký veľký burger chceš?");
-        System.out.println("1: Klasický");
-        System.out.println("2: Dvojitý");
+		selectOption("Choose meat.", "Beef", "Chicken");
 
-        choice = myScanner.nextInt();
+		try {
+			choice = input.nextInt();
 
-        if(choice == 1) {
-            return factory.createClassicBurger().writeInfo();
-        } else {
-            return factory.createDoubleBurger().writeInfo();
-        }
+			if(choice == 1) {
+				factory = new BeefBurgerFactory();
+			} else if (choice == 2){
+				factory = new ChickenBurgerFactory();
+			}
+		}
+			catch(InputMismatchException e) {
+			System.err.println("Wrong input! Input only integer numbers please...");
+			input.nextLine();
+		}
 
-    }
+
+		selectOption("Choose Burger size.", "Classic", "Double");
+
+		try {
+			choice = input.nextInt();
+
+			String order = "";
+
+			if(choice == 1) {
+				order = factory.createClassicBurger().writeInfo();
+			} else if (choice == 2){
+				order = factory.createDoubleBurger().writeInfo();
+			}
+			System.out.println(order + "\n");
+			return order;
+		}
+		catch(InputMismatchException e) {
+			System.err.println("Wrong input! Input only integer numbers please...");
+			input.nextLine();
+		}
+
+
+		return "";
+
+	}
+
+	private static void selectOption(String select1, String select2, String select3) {
+		System.out.println("""
+				╔═════════════════════════════════════╗
+				╠ %s
+				╠═════════════════════════════════════╝
+				╠-● 1. %s
+				╠-● 2. %s
+				╚═════════════════════════════════════╝
+				""".formatted(select1, select2, select3));
+
+	}
+
 }

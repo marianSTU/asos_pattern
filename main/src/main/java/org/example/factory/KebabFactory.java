@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package org.example.factory;
 
 public class KebabFactory extends  BaseKebabFactory{
     @Override
@@ -16,12 +16,12 @@ public class KebabFactory extends  BaseKebabFactory{
             case 3:
                 kebab = new KebabTortilla();
                 break;
-            default: throw new IllegalArgumentException("No such Kebab.");
+            default: throw new IllegalArgumentException("No such org.example.factory.Kebab.");
         }
 
         kebab.chickenKebab();
         kebab.addingIngredients();
-        kebab.typeOfKebab();
+
 
         return kebab;
     }

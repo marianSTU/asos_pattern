@@ -1,4 +1,4 @@
-package org.example.Filebase;
+package org.example.filebase;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -36,7 +36,7 @@ public class DataSource implements DataSourceInterface, Serializable, Cloneable 
 		try {
 			BufferedWriter myWriter = new BufferedWriter(
 					new FileWriter("orders.txt", true));
-			myWriter.write("Order created: " + orderName + "\n");
+			myWriter.write("Order created:\n " + orderName + "\n\n\n");
 			myWriter.close();
 			System.out.println("Successfully wrote to the file.");
 		} catch (IOException e) {

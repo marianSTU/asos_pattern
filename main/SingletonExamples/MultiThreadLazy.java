@@ -1,6 +1,6 @@
 package org.example.SingletonExamples;
 
-import org.example.Filebase.DataSource;
+import org.example.filebase.DataSource;
 
 public class MultiThreadLazy {
 	private static MultiThreadLazy instance;
