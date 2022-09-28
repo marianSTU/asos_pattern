@@ -1,11 +1,12 @@
 package builder;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 
     public static String showMenu(){
-        int choice;
+        int choice = 0;
         Pizza pizza;
         Director director = new Director();
         Scanner input = new Scanner(System.in);
@@ -13,7 +14,13 @@ public class Menu {
 
 
         printMainMenu();
-        choice = input.nextInt();
+        try {
+            choice = input.nextInt();
+        }
+        catch(InputMismatchException e) {
+            System.err.println("Wrong input! Input only integer numbers please...");
+            input.nextLine();
+        }
 
         while (choice != 6){
             switch (choice){
@@ -24,21 +31,36 @@ public class Menu {
                     break;
                 case 2:
                     showPizzaMenu();
-                    choice = input.nextInt();
-                    selectPizzaFromMenu(pizzaBuilder,director,choice);
+                    try {
+                        choice = input.nextInt();
+                        selectPizzaFromMenu(pizzaBuilder,director,choice);
+                    }
+                    catch(InputMismatchException e) {
+                        System.err.println("Wrong input! Input only integer numbers please...");
+                        input.nextLine();
+                    }
                     break;
                 case 3:
                     while (choice != 12){
                         showIngredients();
-                        choice = input.nextInt();
-                        selectedIngredients(pizzaBuilder, choice);
+                        try {
+                            choice = input.nextInt();
+                            selectedIngredients(pizzaBuilder, choice);
+                        }
+                        catch(InputMismatchException e) {
+                            System.err.println("Wrong input! Input only integer numbers please...");
+                            input.nextLine();
+                        }
+
                     }
                     break;
                 case 4:
+                    pizza = null;
                     pizza = pizzaBuilder.build();
                     System.out.println(pizza.toString());
                     break;
                 case 5:
+                    pizza = null;
                     pizza = pizzaBuilder.build();
                     if(checkOrder(pizza)){
                         return pizza.toString();
@@ -48,7 +70,13 @@ public class Menu {
             }
 
             printMainMenu();
-            choice = input.nextInt();
+            try {
+                choice = input.nextInt();
+            }
+            catch(InputMismatchException e) {
+                System.err.println("Wrong input! Input only integer numbers please...");
+                input.nextLine();
+            }
         }
         return "";
     }
@@ -141,14 +169,16 @@ public class Menu {
         }
     }
 
-    private static Boolean checkOrder(Pizza pizza) {
-        if (pizza.getSize() != null && (pizza.isBacon() || pizza.isCheese() || pizza.isCorn() || pizza.isHam() || pizza.isOnion() || pizza.isPepperoni() || pizza.isPineapple() || pizza.isTomatoSauce() || pizza.isTuna() || pizza.isChickenMeat() || pizza.isSalami())) {
+    private static boolean checkOrder(Pizza pizza) {
+        if (pizza.getSize() != null && (pizza.isBacon() || pizza.isCheese() || pizza.isCorn() ||
+                pizza.isHam() || pizza.isOnion() || pizza.isPepperoni() || pizza.isPineapple() ||
+                pizza.isTomatoSauce() || pizza.isTuna() || pizza.isChickenMeat() || pizza.isSalami())) {
             return true;
         }
         return false;
     }
 
-    private static Boolean selectOption(String select1, String select2){
+    private static boolean selectOption(String select1, String select2){
         Scanner input = new Scanner(System.in);
         System.out.println("""
                 ╔═════════════════════════════════════╗
@@ -158,10 +188,16 @@ public class Menu {
                 ╠-● 2. %s
                 ╚═════════════════════════════════════╝
                 """.formatted(select1,select2));
-        int choice = input.nextInt();
+        try {
+            int choice = input.nextInt();
+            if (choice == 1)
+                return true;
+        }
+        catch(InputMismatchException e) {
+            System.err.println("Wrong input! Input only integer numbers please...");
+            input.nextLine();
+        }
 
-        if (choice == 1)
-            return true;
         return false;
 
     }
