@@ -1,4 +1,4 @@
-package org.example.DAO;
+package org.example.Filebase;
 
 public interface DataSourceInterface {
 	void writeData(String orderName);
