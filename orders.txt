@@ -72,3 +72,13 @@ Order created:
 Classic Burger with chicken meat.
 
 
+Order created:
+ 
+Double Burger with chicken meat.
+
+
+Order created:
+ 
+Classic Burger with beef meat.
+
+

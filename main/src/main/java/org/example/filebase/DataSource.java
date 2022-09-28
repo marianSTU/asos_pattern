@@ -3,9 +3,8 @@ package org.example.filebase;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
 
-public class DataSource implements DataSourceInterface, Serializable, Cloneable {
+public class DataSource implements DataSourceInterface {
 	private static DataSource instance;
 	private DataSource() {
 		if (instance != null) {
@@ -19,16 +18,10 @@ public class DataSource implements DataSourceInterface, Serializable, Cloneable 
 	}
 
 	public static DataSource getInstance() {
-		DataSource result = instance;
-		if (result != null) {
-			return result;
+		if (instance == null){
+			instance = new DataSource();
 		}
-		synchronized(DataSource.class) {
-			if (instance == null) {
-				instance = new DataSource();
-			}
-			return instance;
-		}
+		return instance;
 	}
 
 	@Override
@@ -43,14 +36,5 @@ public class DataSource implements DataSourceInterface, Serializable, Cloneable 
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-	}
-
-	protected Object readResolve() {
-		return instance;
-	}
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException  {
-		throw new CloneNotSupportedException();
 	}
 }
