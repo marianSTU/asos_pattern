@@ -1,16 +1,36 @@
-public abstract class KebabFactory {
-    public abstract Kebab createKebab();
+import java.util.Scanner;
 
-    public void chickenKebab()
-    {
-        System.out.println("chicken meat added");
+public class KebabFactory extends  BaseKebabFactory{
+    @Override
+    public  Kebab createKebab(){
+        System.out.println("Choose type of kebab\n");
+        System.out.println("1: Kebab in Box");
+        System.out.println("2: Kebab in Bun");
+        System.out.println("3: Kebab in Tortilla");
+
+        Scanner sc = new Scanner(System.in);
+        int type = sc.nextInt();
+        Kebab kebab;
+        switch (type)
+        {
+            case 1:
+                kebab = new KebabBox();
+                break;
+            case 2:
+                kebab = new KebabBun();
+                break;
+            case 3:
+                kebab = new KebabTortilla();
+                break;
+            default: throw new IllegalArgumentException("No such Kebab.");
+        }
+
+        kebab.chickenKebab();
+        kebab.addingIngredients();
+        kebab.typeOfKebab();
+
+        return kebab;
     }
 
-    public void addingIngredients(){
-        System.out.println("veggies and sauces added");
-    }
 
-    public void typeOfKebab() {
-
-    }
 }

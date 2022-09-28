@@ -1,7 +1,8 @@
 public class Main {
     public static void main(String args[]) {
-        Kebab kebab = new Kebab();
+        BaseKebabFactory kebabFactory = new KebabFactory();
 
-        System.out.println(kebab.createKebab().getClass());
+
+        System.out.println(kebabFactory.createKebab().getClass());
     }
 }
