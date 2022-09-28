@@ -1,10 +1,8 @@
-package org.example;
+import java.util.Scanner;
 
 import org.example.Filebase.DataSource;
 
 public class Main {
-	public static void main(String[] args) {
-		DataSource ds = DataSource.getInstance();
-		ds.writeData("ahoooooooooj");
-	}
+    public static void main(String[] args) {
+    }      
 }
