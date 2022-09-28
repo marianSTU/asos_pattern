@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.abstractFactory.BurgerFactory;
+import org.example.abstractFactory.BurgerView;
 import org.example.builder.PizzaView;
 import org.example.factory.KebabView;
 import org.example.filebase.DataSource;
@@ -21,7 +21,7 @@ public class Main {
 
 				switch (choice) {
 					case 1 :
-						order = BurgerFactory.getBurger();
+						order = BurgerView.getBurger();
 						break;
 					case 2 :
 						SaladController s = new SaladController();
