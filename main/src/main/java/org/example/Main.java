@@ -1,10 +1,7 @@
-package org.example;
-
 public class Main {
-	public static void main(String[] args) {
-		/*	priklad!!!
-			DataSource ds = DataSource.getInstance();
-			ds.writeData("Kebab");
-		*/
-	}
+    public static void main(String args[]) {
+        Kebab kebab = new Kebab();
+
+        System.out.println(kebab.createKebab().getClass());
+    }
 }
