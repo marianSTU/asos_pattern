@@ -2,14 +2,8 @@ import java.util.Scanner;
 
 public class KebabFactory extends  BaseKebabFactory{
     @Override
-    public  Kebab createKebab(){
-        System.out.println("Choose type of kebab\n");
-        System.out.println("1: Kebab in Box");
-        System.out.println("2: Kebab in Bun");
-        System.out.println("3: Kebab in Tortilla");
+    public  Kebab createKebab(int type){
 
-        Scanner sc = new Scanner(System.in);
-        int type = sc.nextInt();
         Kebab kebab;
         switch (type)
         {
