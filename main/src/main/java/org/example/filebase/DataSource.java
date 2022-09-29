@@ -41,7 +41,7 @@ public class DataSource implements DataSourceInterface {
 	public void closeFileConnection() {
 		try {
 			connection.close();
-		} catch (IOException e) {}
+		} catch (IOException ignored) {}
 	}
 
 
