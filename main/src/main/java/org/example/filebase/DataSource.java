@@ -6,14 +6,17 @@ import java.io.IOException;
 
 public class DataSource implements DataSourceInterface {
 	private static DataSource instance;
+	private static BufferedWriter connection;
 	private DataSource() {
 		if (instance != null) {
 			throw new RuntimeException();
 		}
 		try {
+			connection = new BufferedWriter(new FileWriter("orders.txt", true));
 			Thread.sleep(1000);
-		} catch (InterruptedException ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
 		}
 	}
 
@@ -27,14 +30,19 @@ public class DataSource implements DataSourceInterface {
 	@Override
 	public void writeData(String orderName) {
 		try {
-			BufferedWriter myWriter = new BufferedWriter(
-					new FileWriter("orders.txt", true));
-			myWriter.write("Order created:\n " + orderName + "\n\n\n");
-			myWriter.close();
+			connection.write("Order created:\n " + orderName + "\n\n\n");
 			System.out.println("Successfully wrote to the file.");
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
 	}
+
+	public void closeFileConnection() {
+		try {
+			connection.close();
+		} catch (IOException e) {}
+	}
+
+
 }

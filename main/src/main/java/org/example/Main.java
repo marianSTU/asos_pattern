@@ -34,8 +34,12 @@ public class Main {
 						order = PizzaView.showMenu();
 						break;
 				}
+
+
 				DataSource ds = DataSource.getInstance();
 				ds.writeData(order);
+
+
 				printMainMenu();
 				try {
 					choice = input.nextInt();
@@ -50,7 +54,8 @@ public class Main {
 			System.err.println("Wrong input! Input only integer numbers please...");
 			input.nextLine();
 		}
-
+		DataSource ds = DataSource.getInstance();
+		ds.closeFileConnection();
 	}
 
 	private static void printMainMenu(){
