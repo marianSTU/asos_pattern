@@ -4,7 +4,7 @@ import org.example.abstractFactory.BurgerView;
 import org.example.builder.PizzaView;
 import org.example.factory.KebabView;
 import org.example.filebase.DataSource;
-import org.example.prototype.SaladController;
+import org.example.prototype.SaladView;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -24,7 +24,7 @@ public class Main {
 						order = BurgerView.getBurger();
 						break;
 					case 2 :
-						SaladController s = new SaladController();
+						SaladView s = new SaladView();
 						order = s.saladOrder();
 						break;
 					case 3 :
