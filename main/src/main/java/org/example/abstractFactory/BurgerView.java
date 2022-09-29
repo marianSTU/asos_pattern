@@ -3,12 +3,12 @@ package org.example.abstractFactory;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class BurgerFactory {
+public class BurgerView {
 
     public static String getBurger() {
         Scanner input = new Scanner(System.in);  // Create a Scanner object
         int choice;
-        BurgerAbstractFactory factory = null;
+        BurgerAbstractFactory factory;
 
 
         System.out.println("You chose Burger!\n");
@@ -23,11 +23,14 @@ public class BurgerFactory {
 				factory = new BeefBurgerFactory();
 			} else if (choice == 2){
 				factory = new ChickenBurgerFactory();
+			} else {
+				throw new InputMismatchException();
 			}
 		}
-			catch(InputMismatchException e) {
+		catch(InputMismatchException e) {
 			System.err.println("Wrong input! Input only integer numbers please...");
 			input.nextLine();
+			return "Invalid order!";
 		}
 
 
@@ -36,12 +39,14 @@ public class BurgerFactory {
 		try {
 			choice = input.nextInt();
 
-			String order = "";
+			String order;
 
 			if(choice == 1) {
 				order = factory.createClassicBurger().writeInfo();
 			} else if (choice == 2){
 				order = factory.createDoubleBurger().writeInfo();
+			} else {
+				throw new InputMismatchException();
 			}
 			System.out.println(order + "\n");
 			return order;
@@ -49,10 +54,11 @@ public class BurgerFactory {
 		catch(InputMismatchException e) {
 			System.err.println("Wrong input! Input only integer numbers please...");
 			input.nextLine();
+			return "Invalid order!";
 		}
 
 
-		return "";
+		//return "";
 
 	}
 

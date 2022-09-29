@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class SaladController {
+public class SaladView {
 
-    public SaladController() {
+    public SaladView() {
     }
 
     public String saladOrder() throws Exception {
@@ -17,8 +17,6 @@ public class SaladController {
         VegetableSalad vegetableSalad = new VegetableSalad("corn");
 
         while (true){
-
-
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String name = reader.readLine();
 
@@ -28,14 +26,11 @@ public class SaladController {
                             // object cloning
                             MeatSalad meatSaladClone = (MeatSalad) meatSalad.clone() ;
 
-                            System.out.println("Enter type of meat:");
+                            System.out.println("╠  Enter type of meat:");
                             String meat = reader.readLine();
                             // decision if we want to have totally same object or slightly different
                             if (!Objects.equals(meatSaladClone.getMeat(), meat)){
                                 meatSaladClone.setMeat(meat);
-                                compare(meatSalad, meatSaladClone);
-                            }else {
-                                compare(meatSalad, meatSaladClone);
                             }
                             // order making
                             order = " Meat: " + meatSaladClone.getMeat() + " SaladType: " + meatSaladClone.getSalad() +
@@ -43,7 +38,7 @@ public class SaladController {
                             break;
 
                     case "2":
-                        System.out.println("Enter type of cheese:");
+                        System.out.println("╠  Enter type of cheese:");
                         String cheese = reader.readLine();
 
                         String saladType = cheeseSalad.getSalad();
@@ -55,10 +50,8 @@ public class SaladController {
 
                         if (!Objects.equals(cheeseSaladClone.getCheese(), cheese)){
                             cheeseSaladClone.setCheese(cheese);
-                            compare(cheeseSalad, cheeseSaladClone);
-                        }else {
-                            compare(cheeseSalad, cheeseSaladClone);
                         }
+
                         order = " Cheese: " + cheeseSaladClone.getCheese() + " SaladType: " + cheeseSaladClone.getSalad() +
                                 " Dressing: " + cheeseSaladClone.getDresing() + " Oil: " + cheeseSaladClone.getOil() ;
 
@@ -67,14 +60,11 @@ public class SaladController {
                         // object cloning
                         VegetableSalad vegetableSaladClone = (VegetableSalad) vegetableSalad.clone() ;
 
-                        System.out.println("Enter type of vegetable:");
+                        System.out.println("╠ Enter type of vegetable:");
                         String veget = reader.readLine();
                         // decision if we want to have totally same object or slightly different
                         if (!Objects.equals(vegetableSalad.getVegetable(), veget)){
                             vegetableSaladClone.setVegetable(veget);
-                            compare(vegetableSalad, vegetableSaladClone);
-                        }else {
-                            compare(vegetableSalad, vegetableSaladClone);
                         }
                         // order making
                         order = " Vegetable: " + vegetableSaladClone.getVegetable() + " SaladType: " + vegetableSaladClone.getSalad() +
@@ -92,21 +82,6 @@ public class SaladController {
             break;
         }
         return order;
-    }
-
-    public static void compare(Object obj1, Object obj2) {
-        System.out.println("-------------------------");
-        if (obj1 != obj2) {
-        System.out.println("Salads are different objects");
-        if (obj1.equals(obj2)) {
-            System.out.println("And they are identical");
-        } else {
-            System.out.println("But they are not identical");
-        }
-        } else {
-            System.out.println("Salads objects are the same");
-        }
-        System.out.println("-------------------------");
     }
 
     public static void intro() {
